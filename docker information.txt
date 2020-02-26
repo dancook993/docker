@@ -1,0 +1,45 @@
+docker exec 0574c5715c8b cat /var/jenkins_home/secrets/initialAdminPassword
+
+docker run -p 8080:8080 -p 50000:50000 --env HTTP_PROXY="http://172.20.224.1:3128" --env HTTPS_PROXY="http://172.20.224.1:3128" acrisliu/jenkins-nodejs:lts
+Configure proxy - 172.20.224.1 port 3128 
+
+For public repository
+
+git config --global http.proxy http://172.20.224.1:3128
+ https://hub.docker.com/r/acrisliu/jenkins-nodejs
+gateway mode needs to be enabled
+
+
+--env HTTP_PROXY="http://172.20.224.1:3128" --env HTTPS_PROXY="http://172.20.224.1:3128" 
+
+
+https://github.com/rzrz12/wdioJenkins.git
+
+npm config set proxy http://172.20.224.1:3128 --global & npm config set http-proxy http://172.20.224.1:3128 --global
+
+need to set https-proxy for npm as well as http
+
+export http_proxy="http://172.20.224.1:3128"
+
+npm test
+
+,
+"proxies":
+{
+  "default":
+  {
+    "httpProxy": "http://172.20.224.1:3128",
+  }
+}
+apk update
+apk add firefox-esr
+
+    firefox: {
+      version: '0.23.0',
+      arch: process.arch,
+      baseURL: 'https://github.com/mozilla/geckodriver/releases/download'
+    }, 
+
+docker run  -p 8080:8080 -p 50000:50000 --env HTTP_PROXY="http://172.20.224.1:3128" --env HTTPS_PROXY="http://172.20.224.1:3128" -v /var/run/docker.sock:/var/run/docker.sock jenkins-use
+
+docker build --build-arg HTTP_PROXY=http://10.20.30.2:1234 --build-arg FTP_PROXY=http://40.50.60.5:4567 .
