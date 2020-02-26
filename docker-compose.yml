@@ -1,0 +1,14 @@
+version: "3"
+services:
+    web:
+        image: dancook993/test/web:latest
+        build:
+            context: ./nginx-server
+            dockerfile: Dockerfile
+    jenkins:
+        image: test/jenkins:latest
+        build:
+            context: ./jenkins-server
+            dockerfile: Dockerfile
+        depends_on:
+            - "web"
