@@ -5,10 +5,14 @@ services:
         build:
             context: ./nginx-server
             dockerfile: Dockerfile
+        ports:
+              - 8090:80
     jenkins:
         image: test/jenkins:latest
         build:
             context: ./jenkins-server
             dockerfile: Dockerfile
+        ports:
+              - 8080:8080
         depends_on:
             - "web"
